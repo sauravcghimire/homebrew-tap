@@ -1,8 +1,8 @@
 cask "nepali-calendar" do
-  version "1.0.0"
+  version "1.1.0"
   # The sha256 and version are rewritten in-place by scripts/publish.sh after
   # each build. Do not hand-edit unless you know what you're doing.
-  sha256 "18906326eb6098df81b879942b7f6d3157d96a28c95c2a443f7a5a37437b5c4a"
+  sha256 "7ecc1e34a7d7bb310f2013414adb36a620d02121fe6f16229d7f2365119dddf6"
 
   url "https://github.com/sauravcghimire/nepali-calendar/releases/download/v#{version}/NepaliCalendar.zip"
   name "Nepali Calendar"
@@ -20,6 +20,13 @@ cask "nepali-calendar" do
   # session starts. Both behaviours are user-toggleable from the popover
   # footer and from System Settings → General → Login Items.
   postflight do
+    # Clear the "downloaded from internet" quarantine flag so Gatekeeper
+    # doesn't block the ad-hoc-signed binary on first launch. Homebrew has
+    # already verified the SHA256 of the download, so this is safe in the
+    # cask context. Standard pattern for unsigned / ad-hoc-signed casks.
+    system_command "/usr/bin/xattr",
+                   args: ["-dr", "com.apple.quarantine", "#{appdir}/NepaliCalendar.app"],
+                   sudo: false
     system_command "/usr/bin/open",
                    args: ["-a", "#{appdir}/NepaliCalendar.app"]
   end
