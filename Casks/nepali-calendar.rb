@@ -1,8 +1,8 @@
 cask "nepali-calendar" do
-  version "1.3.1"
+  version "1.4.0"
   # The sha256 and version are rewritten in-place by scripts/publish.sh after
   # each build. Do not hand-edit unless you know what you're doing.
-  sha256 "9905c70126e901a5d4416613a3b1db094d28290646992cc6b36637d9d9a9a3c1"
+  sha256 "003ff830d9ac2139cef36d5f82e893eb09e7f3ad8a0a09c685485f20d1c5b47e"
 
   url "https://github.com/sauravcghimire/nepali-calendar/releases/download/v#{version}/NepaliCalendar.zip"
   name "Nepali Calendar"
