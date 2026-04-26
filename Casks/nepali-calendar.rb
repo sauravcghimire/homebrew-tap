@@ -31,12 +31,11 @@ cask "nepali-calendar" do
                    args: ["-a", "#{appdir}/NepaliCalendar.app"]
   end
 
-  uninstall_postflight do
-    # Stop any running instance so the login-item unregistration can take
-    # effect cleanly before the .app is removed.
+  uninstall_preflight do
     system_command "/usr/bin/pkill",
                    args: ["-x", "NepaliCalendar"],
-                   sudo: false
+                   sudo: false,
+                   must_succeed: false
   end
 
   zap trash: [
